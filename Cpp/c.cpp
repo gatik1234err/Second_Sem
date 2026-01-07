@@ -1,18 +1,21 @@
 #include <iostream>
+#include <algorithm>  // std::max or GTFO [web:22][web:3]
+#include <string>     // For string literals, you forgetful hack [web:49]
+
 using namespace std;
 
-int main (){
-    int a;
-    int b;
+int main() {
+    int a, b;
 
-    cout << "Enter Integer";
-    cin >> a ;
+    cout << "Enter first integer: ";
+    cin >> a;
 
-    cout << "Enter second no";
+    cout << "Enter second integer: ";
     cin >> b;
 
-    bool c = (a < b);   
+    string result = (a >= std::max(a, b)) ? "true" : "false"; 
 
-    cout << c << endl;
+    cout << result << endl;
 
+    return 0;
 }

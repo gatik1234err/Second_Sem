@@ -1,0 +1,23 @@
+h1 {
+  color: red;
+  font-size: 80px;
+}
+
+p {
+  font-size: 18px;
+}
+
+body {
+  background-color: cyan;
+}
+
+.highlight{
+    font-size: 30px;
+    color: brown;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    
+}
