@@ -21,3 +21,27 @@ body {
     padding: 0;
     
 }
+
+
+/* second day*/
+
+
+
+input:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
+}
+
+body{
+    background-color: rgb(247, 99, 220);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;  
+    align-items: center;        
+}
+
+.form-container {
+    background: rgb(0, 0, 0);
+    padding: 20px 30px;
+    border-radius: 8px;
+}

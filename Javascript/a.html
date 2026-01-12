@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>what can javascript do?</h2>
+
+    <p id="demo">HI</p>
+
+    <!-- Rickroll + text + font-size -->
+    <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1" target="_blank">
+      <button type="button"
+        onclick="document.getElementById('demo').innerHTML='You got Rickrolled by Gb';
+                 document.getElementById('demo').style.fontSize='85px';">
+        Click Me!
+      </button>
+    </a>
+
+    <!-- Hide -->
+    <button type="button"
+      onclick="document.getElementById('demo').style.display='none'">
+      Hide!
+    </button>
+
+    <!-- Show -->
+    <button type="button"
+      onclick="document.getElementById('demo').style.display='block'">
+      Show!
+    </button>
+
+    <!-- GIF image -->
+    <br><br>
+    <img id="myGif" src="" alt="">
+
+    <!-- Turn on GIF -->
+    <button type="button"
+      onclick="document.getElementById('myGif').src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa28yanAxdjJtdHBkOXhvaHFibXB1OXE3cmluNnhheDAyYjNueHRjdyZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/MDJ9IbxxvDUQM/giphy.gif'">
+      Turn on
+    </button>
+  </body>
+</html>
