@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let itemQuantity = 5;
+        let itemPrice = 25;
+        let userBalance = 150;
+        let discountValid = true;
+        let subtotal = 0;
+        let isPremiumMember = true;
+        let eligibleMember =(subtotal > 100 && isPremiumMember || discountValid);
+        let discount = (eligibleMember ? 20 : 0);
+
+        subtotal = (itemPrice * itemQuantity) - discount
+        console.log(subtotal)
+    </script>
+    
+</body>
+</html>

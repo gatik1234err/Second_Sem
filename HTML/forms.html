@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <p class="subtitle">Please complete all required fields</p>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="Enter your first name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" placeholder="Enter your last name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" placeholder="Enter your company name">
+            </div>
+
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role">
+                    <option value="">Select one</option>
+                    <option value="developer">Developer</option>
+                    <option value="designer">Designer</option>
+                    <option value="manager">Manager</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Experience Level</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="experience" value="junior"> Junior</label>
+                    <label><input type="radio" name="experience" value="mid"> Mid</label>
+                    <label><input type="radio" name="experience" value="senior"> Senior</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Skills</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="skills" value="html"> HTML</label>
+                    <label><input type="checkbox" name="skills" value="css"> CSS</label>
+                    <label><input type="checkbox" name="skills" value="js"> JavaScript</label>
+                    <label><input type="checkbox" name="skills" value="backend"> Backend</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="about">About You</label>
+                <textarea id="about" name="about" placeholder="Tell us about yourself"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes" name="notes" placeholder="Any additional information"></textarea>
+            </div>
+
+            <button type="submit">Submit Form</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
