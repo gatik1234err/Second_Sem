@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Creative Developer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#schools">Schools</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Hello, I'm</span>
+                <span class="title-name">Gatik Battapadi</span>
+            </h1>
+            <p class="hero-subtitle">Creative Developer & Designer</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-mouse"></div>
+            <span>Scroll Down</span>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="video">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Featured Video</h2>
+            <div class="video-container animate-on-scroll">
+                <div class="video-wrapper">
+                    <video controls autoplay muted loop playsinline>
+                        <source src="aboutme.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>About Me Video</h3>
+                    <p>A short video introducing myself and my work. Watch to learn more about my journey and passion for development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schools Section -->
+    <section id="schools" class="schools">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">My Schools</h2>
+            <div class="schools-grid">
+                <!-- School 1 - Clickable with link -->
+                <a href="https://yhs.edu.in/" target="_blank" class="school-card animate-on-scroll">
+                    <div class="school-image">
+                        <img src="school1.jpg" alt="School 1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect fill=%22%236c5ce7%22 width=%22300%22 height=%22200%22/><text fill=%22white%22 font-size=%2220%22 x=%22150%22 y=%22105%22 text-anchor=%22middle%22>School 1</text></svg>'">
+                    </div>
+                    <div class="school-info">
+                        <h3>Elementary School</h3>
+                        <p>Primary Education</p>
+                    </div>
+                </a>
+                <!-- School 2 - Clickable with link -->
+                <a href="https://ghs.edu.in" target="_blank" class="school-card animate-on-scroll">
+                    <div class="school-image">
+                        <img src="school2.jpg" alt="School 2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect fill=%2200cec9%22 width=%22300%22 height=%22200%22/><text fill=%22white%22 font-size=%2220%22 x=%22150%22 y=%22105%22 text-anchor=%22middle%22>School 2</text></svg>'">
+                    </div>
+                    <div class="school-info">
+                        <h3>High School</h3>
+                        <p>Secondary Education</p>
+                    </div>
+                </a>
+                <!-- School 3 - Clickable with link -->
+                <a href="https://pacejuniorsciencecollege.com" target="_blank" class="school-card animate-on-scroll">
+                    <div class="school-image">
+                        <img src="school3.jpg" alt="School 3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect fill=%23fd79a8%22 width=%22300%22 height=%22200%22/><text fill=%22white%22 font-size=%2220%22 x=%22150%22 y=%22105%22 text-anchor=%22middle%22>School 3</text></svg>'">
+                    </div>
+                    <div class="school-info">
+                        <h3>College/University</h3>
+                        <p>Higher Education</p>
+                    </div>
+                </a>
+                <!-- School 4 - Clickable with link -->
+                <a href="https://isu.ac.in" target="_blank" class="school-card animate-on-scroll">
+                    <div class="school-image">
+                        <img src="school4.jpg" alt="School 4" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect fill=%23e17055%22 width=%22300%22 height=%22200%22/><text fill=%22white%22 font-size=%2220%22 x=%22150%22 y=%22105%22 text-anchor=%22middle%22>School 4</text></svg>'">
+                    </div>
+                    <div class="school-info">
+                        <h3>Technical Institute</h3>
+                        <p>Vocational Training</p>
+                    </div>
+                </a>
+            </div>
+            <p class="schools-note animate-on-scroll">Click on any school to visit their website</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">About Me</h2>
+            <div class="about-content">
+                <div class="about-image animate-on-scroll">
+                    <div class="image-wrapper">
+                        <div class="image-placeholder">
+                            <span>Gb</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text animate-on-scroll">
+                    <h3>Who I Am</h3>
+                    <p>I'm a passionate developer with expertise in creating beautiful, functional websites and applications. With years of experience in web development, I specialize in building responsive, user-friendly digital experiences that make an impact.</p>
+                    <p>My approach combines clean code with creative design to deliver solutions that not only work flawlessly but also delight users.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="50">0</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="30">0</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16,18 22,12 16,6"></polyline>
+                            <polyline points="8,6 2,12 8,18"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <p>HTML5, CSS3, JavaScript, React, Vue.js</p>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Backend Development</h3>
+                    <p>Node.js, Python, PHP, MongoDB, SQL</p>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76"></polygon>
+                        </svg>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Figma, Adobe XD, Sketch, Prototyping</p>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-First, Bootstrap, Tailwind CSS</p>
+                    <div class="skill-progress">
+                        <div class="progress-bar" data-width="95"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>E-Commerce</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-featured online store with payment integration, inventory management, and user authentication.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>Dating App</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Dating Application</h3>
+                        <p>A modern dating app with real-time chat, geolocation matching, and interactive profiles.</p>
+                        <div class="project-tags">
+                            <span>Vue.js</span>
+                            <span>Firebase</span>
+                            <span>Maps API</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Analytics Dashboard</h3>
+                        <p>A powerful data visualization dashboard with real-time updates and customizable widgets.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>D3.js</span>
+                            <span>Python</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>Portfolio</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Creative Portfolio</h3>
+                        <p>An award-winning portfolio website featuring smooth animations and interactive elements.</p>
+                        <div class="project-tags">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                            <span>GSAP</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Let's Talk</h3>
+                    <p>Have a project in mind? I'd love to hear about it. Let's create something amazing together!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <span>gatikbattapadi@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <span>Somewhere on Earth </span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/gatik1234err" target="_blank" class="social-link"><img width="40" src="githuub.png"></a>
+                        <a href="https://www.linkedin.com/in/gatikbattapadi" target="_blank" class="social-link"><img width="70" src="lnkedin.webp"></a>
+                        <a href="https://x.com/GBGaming573386" target="_blank" class="social-link"><img width="40" src="x.svg"></a>
+                        <a href="https://discord.com/users/s663269174079913994" class="social-link"><img width="40" src="discord.png"> </a>
+                    </div>
+                </div>
+                <form class="contact-form animate-on-scroll">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span>Send Message</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
