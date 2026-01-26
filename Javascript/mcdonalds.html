@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>McDonald's Menu</title>
+    <style>
+        body { font-family: sans-serif; background-color: #fcebeb; display: flex; justify-content: center; }
+        .menu-card { background-color: white; width: 350px; padding: 30px; border: 5px solid #DA291C; border-radius: 15px; text-align: center; }
+        h1 { color: #DA291C; }
+        .food-item { border-bottom: 1px solid #ddd; padding: 15px; text-align: left; display: flex; align-items: center; }
+        img { width: 60px; height: 60px; margin-right: 15px; }
+        button { background-color: #DA291C; color: white; font-size: 18px; padding: 15px; width: 100%; border: none; cursor: pointer; margin-top: 20px; }
+        #result { font-size: 20px; color: green; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="menu-card">
+        <h1>McDonald's</h1>
+        <p>Pick a meal:</p>
+
+        <div class="food-item">
+            <img src="burger.avif" alt="Burger">
+            <input type="radio" id="meal1" name="food"> <label>Burger (₹100)</label>
+        </div>
+
+        <div class="food-item">
+            <img src="fries.png" alt="Fries">
+            <input type="radio" id="meal2" name="food"> <label>Fries (₹50)</label>
+        </div>
+
+        <div class="food-item">
+            <img src="icecream.jpeg" alt="Ice Cream">
+            <input type="radio" id="meal3" name="food"> <label>Ice Cream (₹30)</label>
+        </div>
+
+        <button onclick="getBill()">Order Now</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="mcdonalds.js"></script>
+
+</body>
+</html>
