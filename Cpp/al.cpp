@@ -1,13 +1,14 @@
 #include <iostream>
 using namespace std;
 
-// Base class
+
 class Account {
-public:
+protected:
     string name;
     int accNo;
     float balance;
 
+public:
     void inputAccount() {
         cout << "Enter account holder name: ";
         cin >> name;
@@ -20,7 +21,7 @@ public:
     }
 };
 
-// Savings Account
+
 class SavingsAccount : public Account {
 public:
     float interestRate;
@@ -31,7 +32,6 @@ public:
     }
 
     void show() {
-        cout << "\n--- Savings Account ---\n";
         cout << "Name: " << name << endl;
         cout << "Account No: " << accNo << endl;
         cout << "Balance: " << balance << endl;
@@ -39,7 +39,7 @@ public:
     }
 };
 
-// Current Account
+
 class CurrentAccount : public Account {
 public:
     float overdraftLimit;
@@ -50,7 +50,6 @@ public:
     }
 
     void show() {
-        cout << "\n--- Current Account ---\n";
         cout << "Name: " << name << endl;
         cout << "Account No: " << accNo << endl;
         cout << "Balance: " << balance << endl;
