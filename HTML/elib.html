@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Your Digital Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f39c12;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 12px 30px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #e67e22;
+        }
+
+        /* Stats */
+        .stats {
+            background-color: white;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 36px;
+            color: #3498db;
+        }
+
+        .stat p {
+            color: #666;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .category-card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Featured Books */
+        .featured-books {
+            background-color: white;
+            padding: 60px 20px;
+        }
+
+        .books-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .book-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover {
+            transform: scale(1.05);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            padding: 15px;
+        }
+
+        .book-info h4 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .book-info .author {
+            color: #3498db;
+            font-size: 14px;
+        }
+
+        /* Authors */
+        .authors {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .author-card {
+            background-color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-card h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .author-card .book-count {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* Features */
+        .features {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section p {
+            color: #bdc3c7;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .books-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .category-grid,
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .authors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-grid,
+            .books-grid,
+            .authors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">E-Library</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#authors">Authors</a></li>
+                <li><a href="#modernauthors">Modern Day Authors</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to E-Library</h1>
+        <p>Discover millions of books and resources from around the world</p>
+        <div class="search-box">
+            <input type="text" placeholder="Search for books, authors, or topics...">
+            <button onclick="searchBooks()">Search</button>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat">
+            <h3>10M+</h3>
+            <p>Books Available</p>
+        </div>
+        <div class="stat">
+            <h3>500K+</h3>
+            <p>Active Readers</p>
+        </div>
+        <div class="stat">
+            <h3>50K+</h3>
+            <p>Authors</p>
+        </div>
+        <div class="stat">
+            <h3>100+</h3>
+            <p>Categories</p>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <h2 class="section-title">Browse Categories</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="icon">Fiction</div>
+                <h3>Fiction</h3>
+                <p>Novels, stories, creative writing</p>
+            </div>
+            <div class="category-card">
+                <div class="icon">Science</div>
+                <h3>Science</h3>
+                <p>Physics, chemistry, biology</p>
+            </div>
+            <div class="category-card">
+                <div class="icon">Technology</div>
+                <h3>Technology</h3>
+                <p>Programming, AI, computing</p>
+            </div>
+            <div class="category-card">
+                <div class="icon">History</div>
+                <h3>History</h3>
+                <p>World history, biographies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="featured-books" id="books">
+        <div class="books-container">
+            <h2 class="section-title">Featured Books</h2>
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <img src="Thegreat.jpg" alt="Book 1 Cover">
+                    </div>
+                    <div class="book-info">
+                        <h4>The Great Gatsby</h4>
+                        <p class="author">F. Scott Fitzgerald</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <img src="Mockingbird.webp" alt="Book 2 Cover">
+                    </div>
+                    <div class="book-info">
+                        <h4>To Kill a Mockingbird</h4>
+                        <p class="author">Harper Lee</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <img src="book.avif" alt="Book 3 Cover">
+                    </div>
+                    <div class="book-info">
+                        <h4>1984</h4>
+                        <p class="author">George Orwell</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <img src="PrideAndPrejudice.webp" alt="Book 4 Cover">
+                    </div>
+                    <div class="book-info">
+                        <h4>Pride and Prejudice</h4>
+                        <p class="author">Jane Austen</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">
+                        <img src="Thecatcherintherye.png" alt="Book 5 Cover">
+                    </div>
+                    <div class="book-info">
+                        <h4>The Catcher in the Rye</h4>
+                        <p class="author">J.D. Salinger</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Authors -->
+    <section class="authors" id="authors">
+        <h2 class="section-title">Popular Authors</h2>
+        <div class="authors-grid">
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Jane.avif" alt="Author 1">
+                </div>
+                <h3>Jane Austen</h3>
+                <p>Classic Literature</p>
+                <span class="book-count">25 Books</span>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Adolf.jpg" alt="Author 2">
+                </div>
+                <h3>Adolf Hitler</h3>
+                <p>Jew Killer</p>
+                <span class="book-count">18 Books</span>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Stephen.jpg" alt="Author 3">
+                </div>
+                <h3>Stephen King</h3>
+                <p>Horror, Thriller</p>
+                <span class="book-count">64 Books</span>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Jk.jpg" alt="Author 4">
+                </div>
+                <h3>J.K. Rowling</h3>
+                <p>Fantasy Fiction</p>
+                <span class="book-count">21 Books</span>
+            </div>
+        </div>
+    </section>
+
+     <!-- Modern Day Authors -->
+    <section class="modernauthors" id="modernauthors">
+        <h2 class="section-title"> Modern Day Authors</h2>
+        <div class="authors-grid">
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Jeffrey.webp" alt="Author 1">
+                </div>
+                <h3>Jeffrey Epstein</h3>
+                <p>Loved by millions of Children</p>
+                <span class="book-count">25 Books</span>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Diddy.jpeg" alt="Author 2">
+                </div>
+                <h3>Sean Combs</h3>
+                <p>Creater of Baby oil</p>
+                <span class="book-count">18 Books</span>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="maduro.jpg" alt="Author 3">
+                </div>
+                <h3>Nicolas Maduro</h3>
+                <p>Donald Trump's Best Friend</p>
+                <span class="book-count">64 Books</span>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <img src="Stephen.avif" alt="Author 4">
+                </div>
+                <h3>Stephen Hawking</h3>
+                <p>🥔</p>
+                <span class="book-count">21 Books</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features -->
+    <section class="features" id="about">
+        <div class="features-container">
+            <div class="feature">
+                <h3>Vast Collection</h3>
+                <p>Access millions of books, articles, and resources from various genres and topics.</p>
+            </div>
+            <div class="feature">
+                <h3>Fast Reading</h3>
+                <p experience with our optimized>Enjoy seamless reading reading platform.</p>
+            </div>
+            <div class="feature">
+                <h3>Any Device</h3>
+                <p>Read anywhere, anytime on your computer, tablet, or smartphone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About E-Library</h3>
+                <p>Your trusted digital library providing access to millions of books and resources worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#books">Books</a></li>
+                    <li><a href="#authors">Authors</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Science</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">History</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">support@elibrary.com</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 E-Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function searchBooks() {
+            const searchInput = document.querySelector('.search-box input');
+            if (searchInput.value.trim()) {
+                alert('Searching for: ' + searchInput.value);
+            } else {
+                alert('Please enter a search term');
+            }
+        }
+    </script>
+</body>
+</html>
+
