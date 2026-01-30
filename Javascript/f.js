@@ -5,3 +5,11 @@ let book = {
 };
 
 console.log(book.author);
+
+let person = {
+  name: "Gatik",
+  place: "Kharghar",
+  city: "Mumbai",
+};
+
+console.log(person.city);
