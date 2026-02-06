@@ -1,5 +1,10 @@
+// saad's part begins
 #include <iostream>
-
+#include <ctime>
+#include <cstring>
+#include <cstdlib>
+#include <sstream>
+#include <fstream>
 using namespace std;
 
 class Room {
@@ -62,6 +67,8 @@ public:
         return "Deluxe";
     }
 };
+// saad's part ends
+//Anjali's part begins
 
 class ExecutiveRoom : public Room {
 public:
@@ -102,6 +109,10 @@ public:
         cout << "\n1. Deluxe  2. Executive  3. Presidential\nChoice: ";
         cin >> choice;
 
+        // anjali's part ends here
+
+
+        //gatik's part begins
         Room* r = nullptr;
         if (choice == 1) r = new DeluxeRoom();
         else if (choice == 2) r = new ExecutiveRoom();
@@ -149,26 +160,126 @@ public:
         for (int i = 0; i < count; i++) delete bookings[i];
     }
 };
+//gatik's part ends here
+
+
+
+// ----------------ksuhals part below--------------------------
+
+
+bool isAllDigits(const char* s) {
+    for (int i = 0; s[i]; i++) if (s[i] < '0' || s[i] > '9') return false;
+    return strlen(s) > 0;
+}
+
+bool isAllLetters(const char* s) {
+    for (int i = 0; s[i]; i++) if (!isalpha(s[i])) return false;
+    return strlen(s) > 0;
+}
+
+// Reads input, validates with the given check function, prints error on fail. Returns true if valid.
+bool readValidated(const char* prompt, char* buf, int size, bool (*check)(const char*), const char* err) {
+    cout << prompt;
+    cin >> buf;
+    if (!check(buf)) { cout << err << "\n"; return false; }
+    return true;
+}
 
 int main() {
     Hotel h;
-    int ch;
+    int ch, operations = 0;
+    string user, pass, u, p;
+    int authChoice;
+
+    // ---- Registration & Login ----
+    cout << "1. Register\n2. Login\nChoice: ";
+    cin >> authChoice;
+
+    if (authChoice == 1) {
+        ofstream fout("users.txt", ios::app);
+        cout << "New Username: "; cin >> user;
+        cout << "New Password: "; cin >> pass;
+        fout << user << " " << pass << endl;
+        fout.close();
+        cout << "Registration successful! Now login.\n";
+    }
+
+    cout << "\n--- Login ---\n";
+    cout << "Username: "; cin >> user;
+    cout << "Password: "; cin >> pass;
+
+    bool found = false;
+    ifstream fin("users.txt");
+    while (fin >> u >> p) if (u == user && p == pass) { found = true; break; }
+    fin.close();
+
+    if (!found) { cout << "Invalid credentials. System closing.\n"; return 0; }
+    cout << "Login successful.\n";
+
+    time_t now = time(0);
+    cout << "Session started at: " << ctime(&now);
+
+    // ---- Main Loop ----
     do {
-        cout << "\n=== HOTEL ===\n";  
-        cout << "1. Book Room\n";     
-        cout << "2. Show All\n";
-        cout << "3. Search Room\n";
-        cout << "4. Exit\n";
-        cout << "Choice: ";
-        cin >> ch;
+        cout << "\n=== HOTEL MANAGEMENT SYSTEM ===\n"
+             << "1. Book Room\n2. Show All\n3. Search Room\n4. Exit\nChoice: ";
+
+        if (!(cin >> ch)) { cin.clear(); cin.ignore(1000, '\n'); cout << "Enter numbers only.\n"; continue; }
+
         switch (ch) {
-            case 1: h.bookRoom(); break;
-            case 2: h.showAll(); break;
-            case 3: h.searchByRoom(); break;
-            case 4: cout << "Bye.\n"; break;
-            default: cout << "Wrong.\n";
+            case 1: {
+                char rc[10], rno[20], name[30], phone[15], days[10];
+
+                cout << "\n1. Deluxe  2. Executive  3. Presidential\nChoice: ";
+                cin >> rc;
+                if (!isAllDigits(rc) || atoi(rc) < 1 || atoi(rc) > 3) { cout << "Invalid choice. Please enter 1, 2, or 3.\n"; break; }
+                if (!readValidated("Enter room number: ",   rno,  20, isAllDigits,  "Invalid! Please enter numbers only for room number."))  break;
+                if (!readValidated("Enter guest name (one word): ", name, 30, isAllLetters, "Invalid! Please enter letters only for guest name.")) break;
+                if (!readValidated("Enter phone (digits only): ",  phone, 15, isAllDigits,  "Invalid! Please enter numbers only for phone."))     break;
+                if (!readValidated("Enter number of days: ",       days, 10, isAllDigits,  "Invalid! Please enter numbers only for days."))      break;
+
+                stringstream ss;
+                ss << rc << " " << rno << " " << name << " " << phone << " " << days;
+                streambuf* old = cin.rdbuf(ss.rdbuf());
+                h.bookRoom();
+                cin.rdbuf(old);
+                operations++;
+                break;
+            }
+            case 2:
+                h.showAll();
+                operations++;
+                break;
+
+            case 3: {
+                char rno[20];
+                if (!readValidated("Room number: ", rno, 20, isAllDigits, "Invalid! Please enter numbers only for room number.")) break;
+
+                stringstream ss;
+                ss << rno;
+                streambuf* old = cin.rdbuf(ss.rdbuf());
+                h.searchByRoom();
+                cin.rdbuf(old);
+                operations++;
+                break;
+            }
+            case 4: {
+                char c;
+                cout << "Exit system? (y/n): ";
+                cin >> c;
+                if (c != 'y' && c != 'Y') ch = 0;
+                else cout << "System shutting down safely...\n";
+                break;
+            }
+            default:
+                cout << "Invalid choice.\n";
         }
+        cout << "\n-----------------------------\n";
+
     } while (ch != 4);
+
+    cout << "Total operations this session: " << operations << "\n"
+         << "Thank you for using Hotel Management System.\n";
     return 0;
 }
-
+// ---------------------------------------------------------------

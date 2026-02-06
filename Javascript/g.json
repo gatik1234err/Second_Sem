@@ -1,0 +1,31 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "John Smith",
+      "age": 18,
+      "grade": "A",
+      "subjects": ["Math", "Science", "English"]
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "age": 19,
+      "grade": "B+",
+      "subjects": ["History", "Art", "Literature"]
+    },
+    {
+      "id": 3,
+      "name": "Mike Johnson",
+      "age": 18,
+      "grade": "A-",
+      "subjects": ["Physics", "Chemistry", "Math"]
+    }
+  ],
+  "metadata": {
+    "totalStudents": 3,
+    "className": "Sample Class",
+    "semester": "Fall 2024"
+  }
+}
+

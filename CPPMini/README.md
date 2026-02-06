@@ -1,63 +1,90 @@
-# Hotel Booking System - Line-by-Line Explanation
+# Hotel Management System - Complete Documentation
 
 ## Overview
-This C++ program implements a simple hotel room booking system with three types of rooms (Deluxe, Executive, Presidential). It uses object-oriented programming principles including inheritance, polymorphism, and abstract classes.
+A C++ hotel management system featuring user authentication, room booking with three room types, input validation, and session tracking. Built using object-oriented programming principles.
 
 ---
 
-## Code Explanation
+## Quick Start
 
-### 1. Include Directive and Namespace
+```bash
+# Compile
+g++ hotell.cpp -o hotell
+
+# Run
+./hotell
+```
+
+---
+
+## Program Structure
+
+### Saad's Part (Lines 1-57)
+**Headers, Room Class, DeluxeRoom Class**
+
+### Anjali's Part (Lines 59-78)
+**ExecutiveRoom, PresidentialRoom Classes**
+
+### Gatik's Part (Lines 80-146)
+**Hotel Class (bookRoom, showAll, searchByRoom)**
+
+### Kushal's Part (Lines 149-251)
+**Validation, Authentication, Main Function**
+
+---
+
+## Detailed Line-by-Line Explanation
+
+### === SAAD'S PART ===
+
+#### Line 1-7: Include Headers
 ```cpp
 #include <iostream>
-```
-**Purpose:** Includes the input/output stream library, which provides `cout` for output and `cin` for input operations.
-
-```cpp
+#include <ctime>
+#include <cstring>
+#include <cstdlib>
+#include <sstream>
+#include <fstream>
 using namespace std;
 ```
-**Purpose:** Allows using standard library components (like `cout`, `cin`, `string`) without prefixing them with `std::`. This is a convenience directive but can be avoided in larger projects to prevent namespace pollution.
+| Header | Purpose |
+|--------|---------|
+| `<iostream>` | Console input/output (cin, cout) |
+| `<ctime>` | Time functions (time(), ctime()) |
+| `<cstring>` | C-string functions (strlen) |
+| `<cstdlib>` | General utilities (atoi) |
+| `<sstream>` | String stream for input redirection |
+| `<fstream>` | File operations (ifstream, ofstream) |
 
 ---
 
-## 2. Room Class (Abstract Base Class)
+#### Lines 9-41: Room Class (Abstract Base Class)
 
-### Class Declaration
+##### Lines 10-15: Protected Data Members
 ```cpp
-class Room {
 protected:
-    int roomNo;
-    char guestName[30];
-    char phone[15];
-    int days;
+    int roomNo;          // Room identification number
+    char guestName[30];  // Guest name (max 29 chars + null)
+    char phone[15];      // Phone number (max 14 chars + null)
+    int days;            // Number of days for stay
 ```
-**Purpose:** Defines an abstract base class for all room types.
+- **Protected**: Accessible by derived classes, hidden from outside
+- **Character Arrays**: Fixed-size buffers for string storage
 
-- `protected:` - Access modifier allowing derived classes to access these members directly
-- `int roomNo;` - Stores the room number (integer)
-- `char guestName[30];` - Character array to store guest name (max 29 chars + null terminator)
-- `char phone[15];` - Character array for phone number (max 14 chars + null terminator)
-- `int days;` - Number of days the room is booked for
-
-### Public Member Functions
+##### Lines 17-29: Constructor
 ```cpp
 public:
     Room() {
         roomNo = 0;
-        guestName[0] = '\0';
-        phone[0] = '\0';
+        guestName[0] = '\0';  // Empty string
+        phone[0] = '\0';       // Empty string
         days = 0;
     }
 ```
-**Purpose:** Default constructor that initializes all member variables to default values.
+- Initializes all members to default/empty values
+- `'\0'` is null terminator making strings empty
 
-- `Room()` - Constructor with same name as class, no parameters
-- `roomNo = 0;` - Sets room number to 0 (invalid/empty state)
-- `guestName[0] = '\0';` - Sets first character to null terminator, making it an empty string
-- `phone[0] = '\0';` - Sets first character to null terminator, making it an empty string
-- `days = 0;` - Sets days to 0 (no booking)
-
-### Input Method
+##### Lines 31-42: inputCommon() Method
 ```cpp
     void inputCommon() {
         cout << "Enter room number: ";
@@ -73,48 +100,35 @@ public:
         cin >> days;
     }
 ```
-**Purpose:** Collects common booking information from user.
+- Collects guest booking information
+- `cin >>` reads from standard input
 
-- `void inputCommon()` - Returns nothing, collects user input
-- `cout << "Enter room number: ";` - Displays prompt message
-- `cin >> roomNo;` - Reads integer input into roomNo
-- `cin >> guestName;` - Reads string input into guestName array (one word only)
-- `cin >> phone;` - Reads string input into phone array
-- `cin >> days;` - Reads integer input into days
-
-### Pure Virtual Functions
+##### Lines 44-46: Pure Virtual Functions
 ```cpp
     virtual double getRatePerDay() const = 0;
     virtual const char* getType() const = 0;
 ```
-**Purpose:** Declares pure virtual functions that must be implemented by derived classes.
+- **Pure virtual**: Must be implemented by derived classes
+- **`const`**: Promises not to modify object state
+- Makes `Room` an abstract class (cannot be instantiated)
 
-- `virtual` - Allows function overriding in derived classes
-- `double getRatePerDay() const = 0;` - Must return the daily rate (pure virtual)
-- `const char* getType() const = 0;` - Must return room type name (pure virtual)
-- `const` - Promises not to modify member variables
-
-### Cost Calculation
+##### Lines 48-50: totalCost() Method
 ```cpp
     double totalCost() const {
         return days * getRatePerDay();
     }
 ```
-**Purpose:** Calculates total booking cost.
+- Calculates total bill: `days × daily rate`
+- Polymorphic call to derived class implementation
 
-- `double totalCost() const` - Returns double, doesn't modify object
-- `days * getRatePerDay();` - Multiplies number of days by daily rate (polymorphic call)
-
-### Getter Method
+##### Lines 52-53: Getter Method
 ```cpp
     int getRoomNo() const { return roomNo; }
 ```
-**Purpose:** Provides read-only access to room number.
+- Simple getter for room number
+- Enables searching by room number
 
-- `int getRoomNo() const` - Getter method, returns room number
-- `return roomNo;` - Returns the private/protected member value
-
-### Display Method
+##### Lines 55-63: show() Method
 ```cpp
     void show() const {
         cout << "Room No   : " << roomNo << "\n";
@@ -126,133 +140,106 @@ public:
         cout << "Total Bill: " << totalCost() << "\n";
     }
 ```
-**Purpose:** Displays all booking information in formatted manner.
+- Displays complete booking information
+- Uses polymorphic calls for rate and type
 
-- `void show() const` - Display function, doesn't modify object
-- Each `cout` statement outputs a label and corresponding value
-- `getType()` and `getRatePerDay()` are called polymorphically
-
-### Virtual Destructor
+##### Lines 65-66: Virtual Destructor
 ```cpp
     virtual ~Room() {}
 ```
-**Purpose:** Virtual destructor ensures proper cleanup of derived class objects through base class pointers.
-
-- `virtual ~Room() {}` - Empty virtual destructor for polymorphic deletion
+- Enables proper cleanup of derived objects through base pointers
+- Required when polymorphism is used
 
 ---
 
-## 3. Derived Room Classes
-
-### DeluxeRoom Class
+#### Lines 68-78: DeluxeRoom Class
 ```cpp
 class DeluxeRoom : public Room {
 public:
     double getRatePerDay() const override {
-        return 1000.0;
+        return 1000.0;  // $1000 per day
     }
     const char* getType() const override {
         return "Deluxe";
     }
 };
 ```
-**Purpose:** Concrete implementation of Room for deluxe rooms.
+- Inherits from `Room`
+- **`override`**: Explicitly states overriding virtual function
+- Rate: **$1000/day**
 
-- `class DeluxeRoom : public Room` - Inherits from Room base class
-- `override` keyword - Explicitly states these functions override base class virtual functions
-- `return 1000.0;` - Deluxe room costs $1000 per day
-- `return "Deluxe";` - Returns room type as string literal
+---
 
-### ExecutiveRoom Class
+### === ANJALI'S PART ===
+
+#### Lines 80-90: ExecutiveRoom Class
 ```cpp
 class ExecutiveRoom : public Room {
 public:
     double getRatePerDay() const override {
-        return 1500.0;
+        return 1500.0;  // $1500 per day
     }
     const char* getType() const override {
         return "Executive";
     }
 };
 ```
-**Purpose:** Concrete implementation for executive rooms.
+- Second room tier
+- Rate: **$1500/day**
 
-- Same structure as DeluxeRoom but returns different values
-- `return 1500.0;` - Executive room costs $1500 per day
-- `return "Executive";` - Returns room type name
+---
 
-### PresidentialRoom Class
+#### Lines 92-102: PresidentialRoom Class
 ```cpp
 class PresidentialRoom : public Room {
 public:
     double getRatePerDay() const override {
-        return 2500.0;
+        return 2500.0;  // $2500 per day
     }
     const char* getType() const override {
         return "Presidential";
     }
 };
 ```
-**Purpose:** Concrete implementation for presidential suite rooms.
-
-- Highest tier room type
-- `return 2500.0;` - Presidential room costs $2500 per day
-- `return "Presidential";` - Returns room type name
+- Highest tier room
+- Rate: **$2500/day**
 
 ---
 
-## 4. Hotel Class (Manager Class)
+### === GATIK'S PART ===
 
-### Class Declaration and Members
+#### Lines 104-146: Hotel Class
+
+##### Lines 105-107: Data Members
 ```cpp
-class Hotel {
-    Room* bookings[100];
-    int count;
+    Room* bookings[100];  // Array of 100 room pointers
+    int count;            // Tracks current bookings
 ```
-**Purpose:** Manages all room bookings in the hotel.
+- Polymorphic storage: base pointer holds derived objects
+- Maximum 100 bookings
 
-- `Room* bookings[100];` - Array of 100 pointers to Room objects (polymorphic storage)
-- `int count;` - Tracks number of current bookings
-
-### Constructor
+##### Lines 109-114: Constructor
 ```cpp
 public:
     Hotel() : count(0) {
         for (int i = 0; i < 100; i++) bookings[i] = nullptr;
     }
 ```
-**Purpose:** Initializes hotel with empty bookings.
+- Member initializer list: `count(0)`
+- Loop initializes all pointers to `nullptr`
 
-- `Hotel() : count(0)` - Member initializer list sets count to 0
-- `for (int i = 0; i < 100; i++)` - Loop from 0 to 99
-- `bookings[i] = nullptr;` - Initialize all pointers to null (no booking)
-
-### Book Room Method
+##### Lines 116-136: bookRoom() Method
 ```cpp
     void bookRoom() {
         if (count >= 100) {
             cout << "Hotel full.\n";
             return;
         }
-```
-**Purpose:** Creates a new room booking.
 
-- `if (count >= 100)` - Check if hotel is at capacity
-- `cout << "Hotel full.\n";` - Display full message
-- `return;` - Exit function early if full
-
-```cpp
         int choice;
         cout << "\n1. Deluxe  2. Executive  3. Presidential\nChoice: ";
         cin >> choice;
-```
-**Purpose:** Gets room type selection from user.
 
-- `int choice;` - Variable to store user selection
-- Displays room types with numbers
-- `cin >> choice;` - Reads user's choice
-
-```cpp
         Room* r = nullptr;
         if (choice == 1) r = new DeluxeRoom();
         else if (choice == 2) r = new ExecutiveRoom();
@@ -261,28 +248,21 @@ public:
             cout << "Invalid.\n";
             return;
         }
-```
-**Purpose:** Creates appropriate room object based on choice.
 
-- `Room* r = nullptr;` - Declare pointer, initialize to null
-- `new DeluxeRoom();` - Dynamically allocate DeluxeRoom object
-- `new ExecutiveRoom();` - Dynamically allocate ExecutiveRoom object
-- `new PresidentialRoom();` - Dynamically allocate PresidentialRoom object
-- If invalid choice, show error and return
-
-```cpp
         r->inputCommon();
         bookings[count++] = r;
         cout << "Booked.\n";
     }
 ```
-**Purpose:** Finalizes the booking.
+| Step | Action |
+|------|--------|
+| 1 | Check if hotel is full (100 bookings max) |
+| 2 | Prompt for room type selection |
+| 3 | Create appropriate Room object dynamically |
+| 4 | Call inputCommon() to get guest details |
+| 5 | Store in array and increment count |
 
-- `r->inputCommon();` - Call input function on new room object
-- `bookings[count++] = r;` - Store pointer in array, increment count
-- `cout << "Booked.\n";` - Confirm booking success
-
-### Show All Bookings Method
+##### Lines 138-148: showAll() Method
 ```cpp
     void showAll() {
         if (count == 0) {
@@ -295,15 +275,10 @@ public:
         }
     }
 ```
-**Purpose:** Displays all current bookings.
+- Displays all bookings with 1-based numbering
+- Polymorphic `show()` call displays correct room type
 
-- `if (count == 0)` - Check if there are any bookings
-- `cout << "No bookings.\n";` - Message if empty
-- `for (int i = 0; i < count; i++)` - Loop through all bookings
-- `cout << "\n--- Booking " << (i+1) << " ---\n";` - Display booking number (1-indexed)
-- `bookings[i]->show();` - Call show method on each booking (polymorphic call)
-
-### Search by Room Number Method
+##### Lines 150-166: searchByRoom() Method
 ```cpp
     void searchByRoom() {
         if (count == 0) {
@@ -323,145 +298,428 @@ public:
         cout << "Not found.\n";
     }
 ```
-**Purpose:** Finds and displays a specific booking by room number.
+- Linear search through all bookings
+- Returns first match found
 
-- `if (count == 0)` - Check if hotel has any bookings
-- `int rno;` - Variable to store room number to search
-- `cout << "Room number: ";` - Prompt user
-- `cin >> rno;` - Read room number
-- `for (int i = 0; i < count; i++)` - Loop through all bookings
-- `bookings[i]->getRoomNo() == rno` - Compare room numbers
-- `cout << "\nFound:\n";` - Success message
-- `return;` - Exit after finding match
-- `cout << "Not found.\n";` - Message if no match found
-
-### Destructor
+##### Lines 168-171: Destructor
 ```cpp
     ~Hotel() {
         for (int i = 0; i < count; i++) delete bookings[i];
     }
 ```
-**Purpose:** Cleans up dynamically allocated memory when Hotel object is destroyed.
-
-- `~Hotel()` - Destructor called automatically
-- `for (int i = 0; i < count; i++)` - Loop through all bookings
-- `delete bookings[i];` - Free dynamically allocated Room objects
+- Frees dynamically allocated memory
+- Prevents memory leaks
 
 ---
 
-## 5. Main Function
+### === KUSHAL'S PART ===
 
-### Declaration and Hotel Object
+#### Lines 174-181: Validation Functions
+
+##### isAllDigits()
 ```cpp
-int main() {
-    Hotel h;
-    int ch;
+bool isAllDigits(const char* s) {
+    for (int i = 0; s[i]; i++) 
+        if (s[i] < '0' || s[i] > '9') return false;
+    return strlen(s) > 0;
+}
 ```
-**Purpose:** Entry point of the program and main loop.
+- Returns `true` if ALL characters are digits 0-9
+- Returns `false` if empty or contains non-digits
+- `s[i]` is truthy until null terminator
 
-- `int main()` - Program execution starts here
-- `Hotel h;` - Create Hotel object instance
-- `int ch;` - Variable to store menu choice
+##### isAllLetters()
+```cpp
+bool isAllLetters(const char* s) {
+    for (int i = 0; s[i]; i++) 
+        if (!isalpha(s[i])) return false;
+    return strlen(s) > 0;
+}
+```
+- Returns `true` if ALL characters are letters A-Z/a-z
+- Returns `false` if empty or contains non-letters
+- `isalpha()` checks for alphabetic characters
 
-### Menu Loop
+---
+
+#### Lines 183-189: readValidated()
+```cpp
+bool readValidated(const char* prompt, char* buf, int size, 
+                   bool (*check)(const char*), const char* err) {
+    cout << prompt;
+    cin >> buf;
+    if (!check(buf)) { 
+        cout << err << "\n"; 
+        return false; 
+    }
+    return true;
+}
+```
+| Parameter | Description |
+|-----------|-------------|
+| `prompt` | Message to display |
+| `buf` | Buffer to store input |
+| `size` | Maximum buffer size |
+| `check` | Function pointer to validation |
+| `err` | Error message on invalid input |
+
+- Reads input and validates using callback function
+- Returns `true` if valid, `false` otherwise
+
+---
+
+#### Lines 191-251: main() Function
+
+##### Lines 192-194: Variable Declarations
+```cpp
+    Hotel h;
+    int ch, operations = 0;
+    string user, pass, u, p;
+    int authChoice;
+```
+- `h`: Hotel instance
+- `ch`: Menu choice
+- `operations`: Tracks number of actions
+- `user, pass`: Input username/password
+- `u, p`: Read username/password from file
+
+---
+
+##### Lines 197-207: Registration
+```cpp
+    cout << "1. Register\n2. Login\nChoice: ";
+    cin >> authChoice;
+
+    if (authChoice == 1) {
+        ofstream fout("users.txt", ios::app);
+        cout << "New Username: "; cin >> user;
+        cout << "New Password: "; cin >> pass;
+        fout << user << " " << pass << endl;
+        fout.close();
+        cout << "Registration successful! Now login.\n";
+    }
+```
+- `ios::app`: Append mode (doesn't overwrite)
+- Saves credentials to `users.txt` in format: `username password`
+
+---
+
+##### Lines 209-221: Login Verification
+```cpp
+    cout << "\n--- Login ---\n";
+    cout << "Username: "; cin >> user;
+    cout << "Password: "; cin >> pass;
+
+    bool found = false;
+    ifstream fin("users.txt");
+    while (fin >> u >> p) 
+        if (u == user && p == pass) { found = true; break; }
+    fin.close();
+
+    if (!found) { 
+        cout << "Invalid credentials. System closing.\n"; 
+        return 0; 
+    }
+    cout << "Login successful.\n";
+```
+- Reads file line by line
+- Checks for exact username/password match
+- Exits if credentials invalid
+
+---
+
+##### Lines 223-225: Session Start Time
+```cpp
+    time_t now = time(0);
+    cout << "Session started at: " << ctime(&now);
+```
+- `time(0)`: Gets current time in seconds since epoch (Jan 1, 1970)
+- `ctime()`: Converts to human-readable string
+
+---
+
+##### Lines 227-245: Main Menu Loop
 ```cpp
     do {
-        cout << "\n=== HOTEL ===\n";  
-        cout << "1. Book Room\n";     
-        cout << "2. Show All\n";
-        cout << "3. Search Room\n";
-        cout << "4. Exit\n";
-        cout << "Choice: ";
-        cin >> ch;
-```
-**Purpose:** Displays menu and gets user choice.
+        cout << "\n=== HOTEL MANAGEMENT SYSTEM ===\n"
+             << "1. Book Room\n2. Show All\n3. Search Room\n4. Exit\nChoice: ";
 
-- `do {` - Start do-while loop (runs at least once)
-- Displays menu options with numbers
-- `cout << "Choice: ";` - Prompt for input
-- `cin >> ch;` - Read user's menu choice
-
-### Switch Statement
-```cpp
-        switch (ch) {
-            case 1: h.bookRoom(); break;
-            case 2: h.showAll(); break;
-            case 3: h.searchByRoom(); break;
-            case 4: cout << "Bye.\n"; break;
-            default: cout << "Wrong.\n";
+        if (!(cin >> ch)) { 
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            cout << "Enter numbers only.\n"; 
+            continue; 
         }
-    } while (ch != 4);
 ```
-**Purpose:** Routes program flow based on user choice.
+- `do-while`: Executes at least once
+- `cin.clear()`: Clears error flags on invalid input
+- `cin.ignore()`: Discards up to 1000 characters or until newline
 
-- `switch (ch)` - Evaluate integer variable
-- `case 1:` - If ch equals 1
-- `h.bookRoom();` - Call bookRoom method on hotel object
-- `break;` - Exit switch statement
-- `case 2:` - If ch equals 2
-- `h.showAll();` - Call showAll method
-- `case 3:` - If ch equals 3
-- `h.searchByRoom();` - Call searchByRoom method
-- `case 4:` - If ch equals 4
-- `cout << "Bye.\n";` - Exit message
-- `default:` - For any other value
-- `cout << "Wrong.\n";` - Invalid choice message
-- `} while (ch != 4);` - Continue loop until user chooses exit
+---
 
-### Return Statement
+##### Lines 247-250: Case 1 - Book Room
 ```cpp
+        case 1: {
+            char rc[10], rno[20], name[30], phone[15], days[10];
+
+            cout << "\n1. Deluxe  2. Executive  3. Presidential\nChoice: ";
+            cin >> rc;
+            if (!isAllDigits(rc) || atoi(rc) < 1 || atoi(rc) > 3) { 
+                cout << "Invalid choice. Please enter 1, 2, or 3.\n"; 
+                break; 
+            }
+```
+- `atoi()`: Converts string to integer
+- Validates choice is 1, 2, or 3
+
+---
+
+##### Lines 251-256: Input Validation Chain
+```cpp
+            if (!readValidated("Enter room number: ",   rno,  20, isAllDigits,  
+                "Invalid! Please enter numbers only for room number."))  break;
+            if (!readValidated("Enter guest name (one word): ", name, 30, isAllLetters, 
+                "Invalid! Please enter letters only for guest name.")) break;
+            if (!readValidated("Enter phone (digits only): ",  phone, 15, isAllDigits,  
+                "Invalid! Please enter numbers only for phone."))     break;
+            if (!readValidated("Enter number of days: ",       days, 10, isAllDigits,  
+                "Invalid! Please enter numbers only for days."))      break;
+```
+- Each field validated with appropriate function
+- `break` exits case on any validation failure
+
+---
+
+##### Lines 258-263: Input Redirection Trick
+```cpp
+            stringstream ss;
+            ss << rc << " " << rno << " " << name << " " << phone << " " << days;
+            streambuf* old = cin.rdbuf(ss.rdbuf());
+            h.bookRoom();
+            cin.rdbuf(old);
+```
+| Step | Action |
+|------|--------|
+| 1 | Create stringstream with validated inputs |
+| 2 | Save original cin buffer pointer |
+| 3 | Redirect cin to stringstream |
+| 4 | Call bookRoom() which uses cin |
+| 5 | Restore original cin buffer |
+
+---
+
+##### Lines 265-270: Case 2 & 3
+```cpp
+            operations++;
+            break;
+        }
+        case 2:
+            h.showAll();
+            operations++;
+            break;
+
+        case 3: {
+            char rno[20];
+            if (!readValidated("Room number: ", rno, 20, isAllDigits, 
+                "Invalid! Please enter numbers only for room number.")) break;
+
+            stringstream ss;
+            ss << rno;
+            streambuf* old = cin.rdbuf(ss.rdbuf());
+            h.searchByRoom();
+            cin.rdbuf(old);
+            operations++;
+            break;
+        }
+```
+- Case 2: Show all bookings
+- Case 3: Search by room number with validation
+- Both increment operation counter
+
+---
+
+##### Lines 272-281: Case 4 - Exit
+```cpp
+        case 4: {
+            char c;
+            cout << "Exit system? (y/n): ";
+            cin >> c;
+            if (c != 'y' && c != 'Y') ch = 0;
+            else cout << "System shutting down safely...\n";
+            break;
+        }
+```
+- Confirmation before exit
+- If 'y' or 'Y': exits (ch=4)
+- Otherwise: continues loop (ch=0)
+
+---
+
+##### Lines 283-285: Loop End
+```cpp
+        default:
+            cout << "Invalid choice.\n";
+    }
+    cout << "\n-----------------------------\n";
+
+} while (ch != 4);
+```
+- Default case for invalid menu choices
+- Loop continues until ch equals 4 (exit)
+
+---
+
+##### Lines 287-290: Session Summary
+```cpp
+    cout << "Total operations this session: " << operations << "\n"
+         << "Thank you for using Hotel Management System.\n";
     return 0;
 }
 ```
-**Purpose:** Indicates successful program termination.
-
-- `return 0;` - Returns 0 to operating system (convention for success)
-- `}` - End of main function
+- Displays total operations performed
+- Returns 0 (success) to operating system
 
 ---
 
-## Key Concepts Used
+## Room Types & Rates
 
-1. **Inheritance**: DeluxeRoom, ExecutiveRoom, and PresidentialRoom inherit from Room
-2. **Polymorphism**: Virtual functions allow correct method call based on actual object type
-3. **Abstraction**: Room class is abstract with pure virtual functions
-4. **Dynamic Memory**: `new` and `delete` for allocating room objects
-5. **Encapsulation**: Data members are protected, accessed through methods
-6. **Pointers**: Array of base class pointers to store derived objects
-
----
-
-## Room Rates
-
-| Room Type | Rate Per Day |
-|-----------|-------------|
-| Deluxe | $1000 |
-| Executive | $1500 |
-| Presidential | $2500 |
+| Class | Rate/Day | Room Type String |
+|-------|----------|------------------|
+| DeluxeRoom | $1000 | "Deluxe" |
+| ExecutiveRoom | $1500 | "Executive" |
+| PresidentialRoom | $2500 | "Presidential" |
 
 ---
 
-## Compiling and Running
+## OOP Concepts Used
 
-```bash
-# Compile
-g++ hotell.cpp -o hotell
+| Concept | Implementation |
+|---------|---------------|
+| **Abstraction** | Abstract `Room` class with pure virtual functions |
+| **Inheritance** | Three room types inherit from `Room` |
+| **Polymorphism** | Virtual functions overridden in derived classes |
+| **Encapsulation** | Data members protected, accessed via methods |
+| **Dynamic Binding** | Runtime determination of actual object type |
 
-# Run
-./hotell
+---
+
+## File Format
+
+**users.txt**
+```
+username1 password1
+username2 password2
+username3 password3
+```
+
+- One user per line
+- Space-separated credentials
+- No encryption (for educational purposes)
+
+---
+
+## Validation Rules
+
+| Field | Valid Characters | Validation Function |
+|-------|-----------------|-------------------|
+| Room Number | 0-9 | `isAllDigits()` |
+| Guest Name | A-Z, a-z | `isAllLetters()` |
+| Phone | 0-9 | `isAllDigits()` |
+| Days | 0-9 | `isAllDigits()` |
+| Menu Choice | 1, 2, 3, 4 | Manual check |
+
+---
+
+## Memory Management
+
+| Allocation | Location | Deallocation |
+|------------|----------|--------------|
+| `new DeluxeRoom()` | bookRoom() | Hotel destructor |
+| `new ExecutiveRoom()` | bookRoom() | Hotel destructor |
+| `new PresidentialRoom()` | bookRoom() | Hotel destructor |
+
+- All dynamically allocated objects are freed in destructor
+- No memory leaks
+
+---
+
+## Authentication Flow
+
+```
+┌─────────────────┐
+│ 1. Register?    │──── YES ──► [Save to users.txt]
+ │ 2. Login?      │              │
+ └───────┬────────┘              │
+         │ NO                   │
+         ▼                      │
+    [Login Screen] ◄────────────┘
+         │
+    ┌────┴────┐
+    │ Valid?  │
+    └────┬────┘
+         │
+    NO   │   YES
+    │     │
+    ▼     ▼
+  EXIT   ▼
+      [Main Menu]
 ```
 
 ---
 
-## Program Flow
+## Contributors
 
-1. Hotel object created
-2. Menu loop starts
-3. User selects option:
-   - **Book Room**: Prompts for room type and guest details
-   - **Show All**: Displays all current bookings
-   - **Search Room**: Finds booking by room number
-   - **Exit**: Terminates program
-4. Loop continues until Exit option chosen
-5. Hotel destructor cleans up allocated memory
+| Person | Contribution |
+|--------|-------------|
+| **Saad** | Headers, Room class, DeluxeRoom class |
+| **Anjali** | ExecutiveRoom, PresidentialRoom classes |
+| **Gatik** | Hotel class, booking management |
+| **Kushal** | Validation, authentication, main loop |
+
+---
+
+## Program Output Example
+
+```
+1. Register
+2. Login
+Choice: 1
+New Username: john
+New Password: secret
+Registration successful! Now login.
+
+--- Login ---
+Username: john
+Password: secret
+Login successful.
+Session started at: Wed Dec 11 10:30:00 2024
+
+=== HOTEL MANAGEMENT SYSTEM ===
+1. Book Room
+2. Show All
+3. Search Room
+4. Exit
+Choice: 1
+
+1. Deluxe  2. Executive  3. Presidential
+Choice: 2
+Enter room number: 101
+Enter guest name (one word): JohnSmith
+Enter phone (digits only): 1234567890
+Enter number of days: 5
+Booked.
+
+-----------------------------
+
+=== HOTEL MANAGEMENT SYSTEM ===
+1. Book Room
+2. Show All
+3. Search Room
+4. Exit
+Choice: 4
+Exit system? (y/n): y
+System shutting down safely...
+Total operations this session: 1
+Thank you for using Hotel Management System.
+```
 

@@ -1,75 +1,82 @@
-<!-- Html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>* Ride with Uber | Request Rides 24/7 | Official Uber Site</title>
-    <link rel="stylesheet" href="uber.css">
-    <script src="uber.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Uber Clone - Home</title>
+  <link rel="stylesheet" href="uber.css">
 </head>
-<body>
-    <div class="header">
-        <a href="#" class="logo">Uber</a>
-        <nav class="nav-links">
-            <ul>
-                <li><a href="#">Ride</a></li>
-                <li><a href="#">Drive</a></li>
-                <li><a href="#">Business</a></li>
-                <li>
-                <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">About</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Hello</a>
-                        <a href="#">Aareen</a>
-                        <a href="#">Is Gay</a>
-                    </div>
-                </div>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1Zm8 11c0 .7-.1 1.4-.3 2-.6-1.5-1.6-3.1-3-4.7l1.8-1.8c1 1.3 1.5 2.8 1.5 4.5ZM6.5 6.5c1.3 0 3.6.8 6 2.9l-3.2 3.2C7.1 9.8 6.5 7.5 6.5 6.5Zm8.1 5c2.3 2.7 2.9 5 2.9 6-1.3 0-3.6-.8-6-2.9l3.1-3.1Zm1.9-6.1-1.9 1.9c-1.6-1.4-3.2-2.4-4.7-3 .7-.2 1.3-.3 2-.3 1.8 0 3.3.5 4.6 1.4ZM4 12c0-.7.1-1.4.3-2 .6 1.5 1.6 3.1 3 4.7l-1.8 1.8C4.5 15.2 4 13.7 4 12Zm3.5 6.6 1.9-1.9c1.6 1.4 3.2 2.4 4.7 3-.7.2-1.3.3-2 .3-1.8 0-3.3-.5-4.6-1.4Z" fill="currentColor"></path></svg>
-                    EN
-                </li>
-                <li>
-                    <a href="#" class="btn btn-signup">Help</a>
-                </li>
-                <li><a href="#" class="btn btn-login">Log in</a></li>
-                <li><a href="#" class="btn btn-signup">Sign up</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="hero-section">
-        <h1 class="Ride">Ride</h1>
-        <nav class="nav-links">
-            <ul class="hero-nav">
-                <li><a href="#" class="active">Request a Ride</a></li>
-                <li><a href="#">Reserve a Ride</a></li>
-                <li><a href="#">See Prices</a></li>
-                <li><a href="#">Explore ride options</a></li>
-                <li><a href="#">Airport rides</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="content">
-        <div class="left-content">
-            <div class="location-selector">
-                <svg aria-hidden="true" fill="currentColor" focusable="false" height="1em" width="1em" viewBox="0 0 14 14" color="inherit" class="css-jZqiAM"><path d="M10.9081 2.21665C8.74974 0.0583171 5.24974 0.0583171 3.09141 2.21665C0.933073 4.37498 0.933073 7.93332 3.09141 10.0917L6.99974 14L10.9081 10.0333C13.0664 7.93332 13.0664 4.37498 10.9081 2.21665ZM6.99974 7.29165C6.35807 7.29165 5.83307 6.76665 5.83307 6.12498C5.83307 5.48332 6.35807 4.95832 6.99974 4.95832C7.64141 4.95832 8.16641 5.48332 8.16641 6.12498C8.16641 6.76665 7.64141 7.29165 6.99974 7.29165Z"></path></svg>
-                <h5>Pune,In</h5>
-                <a>Change city</a>
-            </div>
-            <div>
-                <h1>Request a ride for now or later</h1>
-            </div>
+<body class="uber-body">
+  <header class="uber-header">
+    <div class="logo">Uber</div>
+    <nav class="nav-links">
+      <a href="#">Ride</a>
+      <a href="#">Drive</a>
+      <a href="#">Business</a>
+      <a href="login.html">Log in</a>
+      <button class="btn btn-primary">Sign up</button>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-left">
+      <h1>Go anywhere, anytime</h1>
+      <p>Request a ride at any time and on any day of the year.</p>
+
+      <form class="ride-form">
+        <label>Pickup location</label>
+        <input type="text" placeholder="Enter pickup location">
+
+        <label>Destination</label>
+        <input type="text" placeholder="Enter destination">
+
+        <div class="ride-actions">
+          <button type="submit" class="btn btn-primary">Request now</button>
+          <button type="button" class="btn btn-secondary">Schedule for later</button>
         </div>
-        <div class="right-content">
-            <img src="https://cn-geo1.uber.com/image-proc/crop/resizecrop/udam/format=auto/width=552/height=552/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy80MmEyOTE0Ny1lMDQzLTQyZjktODU0NC1lY2ZmZmUwNTMyZTkucG5n" />
-        </div>
+      </form>
     </div>
-    <footer>
-        <p>&copy; 2026 Uber Technologies, Inc. All rights reserved.</p>
-    </footer>
+
+    <div class="hero-right">
+      <div class="phone-mockup">
+        <div class="phone-map">Map preview</div>
+      </div>
+    </div>
+  </main>
+
+  <section class="cards-section">
+    <div class="info-card">
+      <h2>Ride</h2>
+      <p>Tap a button, get a ride with affordable everyday options.</p>
+      <a href="#">Learn more →</a>
+    </div>
+    <div class="info-card">
+      <h2>Drive</h2>
+      <p>Make money on your schedule by driving with Uber.</p>
+      <a href="#">Learn more →</a>
+    </div>
+    <div class="info-card">
+      <h2>Uber for Business</h2>
+      <p>Power your business with rides and deliveries.</p>
+      <a href="#">Learn more →</a>
+    </div>
+  </section>
+
+  <footer class="uber-footer">
+    <div class="footer-top">
+      <div class="logo">Uber</div>
+      <div class="footer-links">
+        <a href="#">Company</a>
+        <a href="#">Safety</a>
+        <a href="#">Help</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Uber clone</span>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
