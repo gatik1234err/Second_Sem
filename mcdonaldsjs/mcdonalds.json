@@ -1,0 +1,50 @@
+[
+{
+"id": 1,
+"name": "Big Mac",
+"price": 5.99,
+"category": "Burgers",
+"image": "https://s7d1.scene7.com/is/image/mcdonalds/Header_BigMac_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off&quot;,
+"desc": "Mouthwatering perfection. Two 100% beef patties."
+},
+{
+"id": 2,
+"name": "Quarter Pounder",
+"price": 6.39,
+"category": "Burgers",
+"image": "https://s7d1.scene7.com/is/image/mcdonalds/Header_QuarterPounderwithCheese_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off&quot;,
+"desc": "100% fresh beef, hot, deliciously juicy."
+},
+{
+"id": 3,
+"name": "World Famous Fries",
+"price": 2.99,
+"category": "Sides",
+"image": "https://s7d1.scene7.com/is/image/mcdonalds/Header_MediumFrenchFries_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off&quot;,
+"desc": "Golden on the outside, soft and fluffy on the inside."
+},
+{
+"id": 4,
+"name": "Chicken McNuggets",
+"price": 4.49,
+"category": "Chicken",
+"image": "https://s7d1.scene7.com/is/image/mcdonalds/Header_10pcChickenMcNuggets_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off&quot;,
+"desc": "Tender, juicy chicken breast meat in a tempura coating."
+},
+{
+"id": 5,
+"name": "Coca-Cola",
+"price": 1.99,
+"category": "Drinks",
+"image": "https://s7d1.scene7.com/is/image/mcdonalds/Header_MediumCoke_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off&quot;,
+"desc": "A cold, refreshing Coca-Cola® soda."
+},
+{
+"id": 6,
+"name": "Oreo McFlurry",
+"price": 3.29,
+"category": "Desserts",
+"image": "https://s7d1.scene7.com/is/image/mcdonalds/Header_OreoMcFlurry_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off&quot;,
+"desc": "Creamy vanilla soft serve with crunchy OREO® pieces."
+}
+]
