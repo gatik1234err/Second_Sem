@@ -47,14 +47,14 @@ g++ hotell.cpp -o hotell
 #include <fstream>
 using namespace std;
 ```
-| Header | Purpose |
-|--------|---------|
-| `<iostream>` | Console input/output (cin, cout) |
-| `<ctime>` | Time functions (time(), ctime()) |
-| `<cstring>` | C-string functions (strlen) |
-| `<cstdlib>` | General utilities (atoi) |
-| `<sstream>` | String stream for input redirection |
-| `<fstream>` | File operations (ifstream, ofstream) |
+|     Header   |                Purpose               |
+|--------------|--------------------------------------|
+| `<iostream>` | Console input/output (cin, cout)     |
+| `<ctime>`    | Time functions (time(), ctime())     |
+| `<cstring>`  | C-string functions (strlen)          |
+| `<cstdlib>`  | General utilities (atoi)             |
+| `<sstream>`  | String stream for input redirection  |
+| `<fstream>`  | File operations (ifstream, ofstream) |
 
 ---
 
@@ -254,13 +254,13 @@ public:
         cout << "Booked.\n";
     }
 ```
-| Step | Action |
-|------|--------|
-| 1 | Check if hotel is full (100 bookings max) |
-| 2 | Prompt for room type selection |
-| 3 | Create appropriate Room object dynamically |
-| 4 | Call inputCommon() to get guest details |
-| 5 | Store in array and increment count |
+| Step |                    Action                  |
+|------|--------------------------------------------|
+|   1  | Check if hotel is full (100 bookings max)  |
+|   2  | Prompt for room type selection             |
+|   3  | Create appropriate Room object dynamically |
+|   4  | Call inputCommon() to get guest details    |
+|   5. | Store in array and increment count         |
 
 ##### Lines 138-148: showAll() Method
 ```cpp
@@ -355,13 +355,13 @@ bool readValidated(const char* prompt, char* buf, int size,
     return true;
 }
 ```
-| Parameter | Description |
-|-----------|-------------|
-| `prompt` | Message to display |
-| `buf` | Buffer to store input |
-| `size` | Maximum buffer size |
-| `check` | Function pointer to validation |
-| `err` | Error message on invalid input |
+| Parameter |            Description         |
+|-----------|--------------------------------|
+| `prompt`  | Message to display             |
+| `buf`     | Buffer to store input          |
+| `size`    | Maximum buffer size            |
+| `check`   | Function pointer to validation |
+| `err`     | Error message on invalid input |
 
 - Reads input and validates using callback function
 - Returns `true` if valid, `false` otherwise
@@ -498,13 +498,13 @@ bool readValidated(const char* prompt, char* buf, int size,
             h.bookRoom();
             cin.rdbuf(old);
 ```
-| Step | Action |
-|------|--------|
-| 1 | Create stringstream with validated inputs |
-| 2 | Save original cin buffer pointer |
-| 3 | Redirect cin to stringstream |
-| 4 | Call bookRoom() which uses cin |
-| 5 | Restore original cin buffer |
+| Step |                 Action                    |
+|------|-------------------------------------------|
+| 1    | Create stringstream with validated inputs |
+| 2    | Save original cin buffer pointer          |
+| 3    | Redirect cin to stringstream              |
+| 4    | Call bookRoom() which uses cin            |
+| 5    | Restore original cin buffer               |
 
 ---
 
@@ -574,7 +574,7 @@ bool readValidated(const char* prompt, char* buf, int size,
     cout << "Total operations this session: " << operations << "\n"
          << "Thank you for using Hotel Management System.\n";
     return 0;
-}
+
 ```
 - Displays total operations performed
 - Returns 0 (success) to operating system
@@ -583,23 +583,23 @@ bool readValidated(const char* prompt, char* buf, int size,
 
 ## Room Types & Rates
 
-| Class | Rate/Day | Room Type String |
-|-------|----------|------------------|
-| DeluxeRoom | $1000 | "Deluxe" |
-| ExecutiveRoom | $1500 | "Executive" |
-| PresidentialRoom | $2500 | "Presidential" |
+| Class            | Rate/Day | Room Type String |
+|------------------|----------|------------------|
+| DeluxeRoom       | $1000    | "Deluxe"         |
+| ExecutiveRoom    | $1500    | "Executive"      |
+| PresidentialRoom | $2500    | "Presidential"   |
 
 ---
 
 ## OOP Concepts Used
 
-| Concept | Implementation |
-|---------|---------------|
-| **Abstraction** | Abstract `Room` class with pure virtual functions |
-| **Inheritance** | Three room types inherit from `Room` |
-| **Polymorphism** | Virtual functions overridden in derived classes |
-| **Encapsulation** | Data members protected, accessed via methods |
-| **Dynamic Binding** | Runtime determination of actual object type |
+|       Concept       |                  Implementation                   |
+|---------------------|---------------------------------------------------|
+| **Abstraction**     | Abstract `Room` class with pure virtual functions |
+| **Inheritance**     | Three room types inherit from `Room`              |
+| **Polymorphism**    | Virtual functions overridden in derived classes   |
+| **Encapsulation**   | Data members protected, accessed via methods      |
+| **Dynamic Binding** | Runtime determination of actual object type       |
 
 ---
 
@@ -620,22 +620,22 @@ username3 password3
 
 ## Validation Rules
 
-| Field | Valid Characters | Validation Function |
-|-------|-----------------|-------------------|
-| Room Number | 0-9 | `isAllDigits()` |
-| Guest Name | A-Z, a-z | `isAllLetters()` |
-| Phone | 0-9 | `isAllDigits()` |
-| Days | 0-9 | `isAllDigits()` |
-| Menu Choice | 1, 2, 3, 4 | Manual check |
+| Field       | Valid Characters | Validation Function |
+|-------------|------------------|---------------------|
+| Room Number | 0-9              | `isAllDigits()`     |
+| Guest Name  | A-Z, a-z         | `isAllLetters()`    |
+| Phone | 0-9 | `isAllDigits()`  |                     |
+| Days | 0-9  | `isAllDigits()`  |                     |
+| Menu Choice | 1, 2, 3, 4       | Manual check        |
 
 ---
 
 ## Memory Management
 
-| Allocation | Location | Deallocation |
-|------------|----------|--------------|
-| `new DeluxeRoom()` | bookRoom() | Hotel destructor |
-| `new ExecutiveRoom()` | bookRoom() | Hotel destructor |
+|       Allocation         |   Location |.  Deallocation   |
+|--------------------------|------------|------------------|
+| `new DeluxeRoom()`       | bookRoom() | Hotel destructor |
+| `new ExecutiveRoom()`    | bookRoom() | Hotel destructor |
 | `new PresidentialRoom()` | bookRoom() | Hotel destructor |
 
 - All dynamically allocated objects are freed in destructor
@@ -648,19 +648,19 @@ username3 password3
 ```
 ┌─────────────────┐
 │ 1. Register?    │──── YES ──► [Save to users.txt]
- │ 2. Login?      │              │
- └───────┬────────┘              │
-         │ NO                   │
-         ▼                      │
-    [Login Screen] ◄────────────┘
+│  2. Login?      │              │
+└────────┬────────┘              │
+         │ NO                    │
+         ▼                       │
+    [Login Screen] ◄─────────────┘
          │
     ┌────┴────┐
     │ Valid?  │
     └────┬────┘
          │
     NO   │   YES
-    │     │
-    ▼     ▼
+    │    │
+    ▼    ▼
   EXIT   ▼
       [Main Menu]
 ```
@@ -669,12 +669,12 @@ username3 password3
 
 ## Contributors
 
-| Person | Contribution |
-|--------|-------------|
-| **Saad** | Headers, Room class, DeluxeRoom class |
+|  Person    |             Contribution                |
+|------------|-----------------------------------------|
+| **Saad**   | Headers, Room class, DeluxeRoom class   |
 | **Anjali** | ExecutiveRoom, PresidentialRoom classes |
-| **Gatik** | Hotel class, booking management |
-| **Kushal** | Validation, authentication, main loop |
+| **Gatik**  | Hotel class, booking management.        |
+| **Kushal** | Validation, authentication, main loop   |
 
 ---
 

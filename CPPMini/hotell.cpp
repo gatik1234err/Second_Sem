@@ -60,7 +60,7 @@ public:
 
 class DeluxeRoom : public Room {
 public:
-    double getRatePerDay() const override {
+    double getRatePerDay() const override { 
         return 1000.0;
     }
     const char* getType() const override {
